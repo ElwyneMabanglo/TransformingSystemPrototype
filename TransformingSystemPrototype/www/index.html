@@ -84,11 +84,10 @@
             <p>I have an <code>id</code> of "one" on my page container. I'm first in the source order so I'm shown when the page loads.</p>
             <p><a href="#two" class="ui-btn ui-shadow ui-corner-all">Show page "two"</a></p>
         </div><!-- /content -->
-        <div data-role="footer">
-            <h4>Page Footer</h4>
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
+            &nbsp; &copy; Transforming Systems 2016.
         </div><!-- /footer -->
     </div><!-- /page one -->
-
 
 
 
@@ -104,8 +103,9 @@
             <p>Notice that the theme is different for this page because we've added a few <code>data-theme</code> swatch assigments here to show off how flexible it is. You can add any content or widget to these pages, but we're keeping these simple.</p>
             <p><a href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">Back to page "one"</a></p>
         </div><!-- /content -->
-        <div data-role="footer">
-            <h4>Page Footer</h4>
+        <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
+            &nbsp; &copy; Transforming Systems 2016.
         </div><!-- /footer -->
     </div><!-- /page two -->
 
