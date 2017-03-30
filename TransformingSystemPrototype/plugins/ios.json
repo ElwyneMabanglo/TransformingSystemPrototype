@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.myapp950c00"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "io.cordova.myapp950c00"
         }
     },
     "dependent_plugins": {}
