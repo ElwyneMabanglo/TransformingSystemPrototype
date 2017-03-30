@@ -67,10 +67,16 @@
     padding-top: 1em !important;
     }
 
-    /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image*/
+    /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
     .slick-slide {
         outline: none;
     }
+
+    /*Remove overflow hidden - https://stackoverflow.com/questions/8718384/why-is-my-header-text-being-truncated */
+    .ui-header .ui-title {
+    margin-right: 10%;
+    margin-left: 10%;
+}
     </style>
 
     <title>TransformingSystemPrototype</title>
@@ -186,11 +192,44 @@
         </div><!-- /footer -->
     </div><!-- /page two -->
 
+    <!-- Start of second page: #two -->
+    <div data-role="page" id="three" data-theme="a">
+        <div data-role="header" data-position="fixed">
+            <h1 id="titleMain3"></h1>
+            <a href="#left-panel" data-role="button" data-inline="true" data-icon="grid" data-iconpos="notext"></a>
+        </div><!-- /header -->
+        <div role="main" class="ui-content">
+            <section class="regular slider">
+                <div>
 
+                </div>
+                <div>
+   
+                </div>
+                <div>
+
+                </div>
+                <div>
+  
+                </div>
+                <div>
+  
+                </div>
+                <div>
+
+                </div>
+            </section>
+        </div><!-- /content -->
+        <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
+            &nbsp; &copy; Transforming Systems 2016.
+        </div><!-- /footer -->
+    </div><!-- /page two -->
 
     <div data-role="panel" id="left-panel" theme="a">
-        <p><a href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">Back to page "one"</a></p>
-        <p><a href="#two" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">Back to page "one"</a></p>
+        <p><a href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b" id="titleSide1"></a></p>
+        <p><a href="#two" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide2"></a></p>
+        <p><a href="#three" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide3"></a></p>
     </div><!-- /panel -->
 
 
