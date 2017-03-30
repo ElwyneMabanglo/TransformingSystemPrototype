@@ -14,6 +14,20 @@
         
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         //alert("TEST");
+        if (!localStorage.getItem('titlePage1')) {
+            localStorage.setItem('titlePage1', 'Page 1');
+        }
+
+        if (!localStorage.getItem('titlePage2')) {
+            localStorage.setItem('titlePage2', 'Page 2');
+        }
+
+        if (!localStorage.getItem('terms')) {
+            localStorage.setItem('terms', 'Terms &amp; Conditions');
+        }
+
+        document.getElementById("titleMain1").innerHTML = localStorage.getItem('titlePage1');
+        document.getElementById("titleMain2").innerHTML = localStorage.getItem('titlePage2');
     };
 
     function onPause() {
