@@ -41,8 +41,8 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <!--https://jquerymobile.com/ END-->
 
-    <script id="panel-init">
-        //Panel - view-source:http://demos.jquerymobile.com/1.4.0/panel-external/
+    <!--External Panel - http://demos.jquerymobile.com/1.4.0/panel-external/--> 
+    <script>
         $(function () {       
             $("body>[data-role='panel']").panel().enhanceWithin();
         });
@@ -60,11 +60,12 @@
                 width: 100%;
                 position: fixed;
                 z-index: 1000;
-            }
+    }
+
 
     .ui-content {
-    padding: 1em !important;
-    padding-top: 1em !important;
+        padding: 1em !important;
+        padding-top: 1em !important;
     }
 
     /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
@@ -74,18 +75,16 @@
 
     /*Remove overflow hidden - https://stackoverflow.com/questions/8718384/why-is-my-header-text-being-truncated */
     .ui-header .ui-title {
-    margin-right: 10%;
-    margin-left: 10%;
-}
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+
     </style>
 
     <title>TransformingSystemPrototype</title>
 
 </head>
 <body id="deviceready">
-
-
-
 
     <!-- Start of first page: #one -->
     <div data-role="page" id="one" data-theme="a">
@@ -94,7 +93,7 @@
             <a href="#left-panel" data-role="button" data-inline="true" data-icon="grid" data-iconpos="notext"></a>
         </div><!-- /header -->
         <div role="main" class="ui-content">
-            <section class="regular slider">
+            <div class="regular slider">
                 <div>
                     <div id="canvas_container_1_Page_1"></div>
                     <script>
@@ -131,14 +130,12 @@
                         dashboard("canvas_container_6_Page_1");
                     </script>
                 </div>
-            </section>
+            </div>
         </div><!-- /content -->
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
             &nbsp; &copy; Transforming Systems 2016.
         </div><!-- /footer -->
     </div><!-- /page one -->
-
-
 
     <!-- Start of second page: #two -->
     <div data-role="page" id="two" data-theme="a">
@@ -147,7 +144,7 @@
             <a href="#left-panel" data-role="button" data-inline="true" data-icon="grid" data-iconpos="notext"></a>
         </div><!-- /header -->
         <div role="main" class="ui-content">
-            <section class="regular slider">
+            <div class="regular slider">
                 <div>
                     <div id="canvas_container_1_Page_2"></div>
                     <script>
@@ -184,7 +181,7 @@
                         dashboard("canvas_container_6_Page_2");
                     </script>
                 </div>
-            </section>
+            </div>
         </div><!-- /content -->
         <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
@@ -199,26 +196,8 @@
             <a href="#left-panel" data-role="button" data-inline="true" data-icon="grid" data-iconpos="notext"></a>
         </div><!-- /header -->
         <div role="main" class="ui-content">
-            <section class="regular slider">
-                <div>
-
-                </div>
-                <div>
-   
-                </div>
-                <div>
-
-                </div>
-                <div>
-  
-                </div>
-                <div>
-  
-                </div>
-                <div>
-
-                </div>
-            </section>
+            <!--terms container-->
+            <div id="termsText"></div>
         </div><!-- /content -->
         <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
@@ -226,17 +205,56 @@
         </div><!-- /footer -->
     </div><!-- /page two -->
 
+    <!--External Panel-->
     <div data-role="panel" id="left-panel" theme="a">
         <p><a href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b" id="titleSide1"></a></p>
         <p><a href="#two" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide2"></a></p>
         <p><a href="#three" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide3"></a></p>
     </div><!-- /panel -->
 
+    <!--Firebase Database - https://firebase.google.com/docs/database/web/read-and-write -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script>
 
+            var config = {
+                apiKey: "AIzaSyAM3XZsPpodijhSBuPlb1veTSSJaPcJcxM",
+                authDomain: "push-dabf6.firebaseapp.com",
+                databaseURL: "https://push-dabf6.firebaseio.com",
+                storageBucket: "push-dabf6.appspot.com",
+                messagingSenderId: "140870032700"
+            };
 
+            firebase.initializeApp(config);
+            var database = firebase.database();
 
+            // get data from database    
+            database.ref().on("value", function (snap) {
+
+                if (localStorage.getItem('titlePage1') != snap.val().page1) {
+                    localStorage.setItem('titlePage1', snap.val().page1);
+                    document.getElementById("titleMain1").innerHTML = document.getElementById("titleSide1").innerHTML = localStorage.getItem('titlePage1');              
+                }
+
+                if (localStorage.getItem('titlePage2') != snap.val().page2) {
+                    localStorage.setItem('titlePage2', snap.val().page2);
+                    document.getElementById("titleMain2").innerHTML = document.getElementById("titleSide2").innerHTML = localStorage.getItem('titlePage2');
+                }
+
+                if (localStorage.getItem('terms') != snap.val().page2) {
+                    localStorage.setItem('terms', snap.val().page2);
+                    document.getElementById("titleMain3").innerHTML = document.getElementById("titleSide3").innerHTML = localStorage.getItem('terms');
+                }
+
+                if (localStorage.getItem('termsText') != snap.val().term) {
+                    localStorage.setItem('termsText', snap.val().term);
+                    document.getElementById("termsText").innerHTML = localStorage.getItem('termsText');
+                }
+
+            });
+    </script>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
+
 </body>
 </html>
