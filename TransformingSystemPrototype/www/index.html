@@ -215,15 +215,18 @@
     <!--Google analytics - Track page START-->
     <script>
          document.getElementById("titleSide1").addEventListener("touchstart", function () {
-             window.ga.trackView(localStorage.getItem('titlePage1','', true));
+             window.ga.trackView(localStorage.getItem('titlePage1'), '', true);
+             window.ga.trackEvent('Status', 'Panel Touch');
          });
 
          document.getElementById("titleSide2").addEventListener("touchstart", function () {
-             window.ga.trackView(localStorage.getItem('titlePage2','', true));
+             window.ga.trackView(localStorage.getItem('titlePage2'), '', true);
+             window.ga.trackEvent('Status', 'Panel Touch');
          });
 
          document.getElementById("titleSide3").addEventListener("touchstart", function () {
-             window.ga.trackView(localStorage.getItem('terms','', true));
+             window.ga.trackView(localStorage.getItem('terms'), '', true);
+             window.ga.trackEvent('Status', 'Panel Touch');
          });
     </script>
     <!--Google analytics - Track page END-->

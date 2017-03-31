@@ -36,20 +36,21 @@
         document.getElementById("termsText").innerHTML = localStorage.getItem('termsText')
 
         // google-analytics-plugin - https://github.com/danwilson/google-analytics-plugin
-        window.ga.startTrackerWithId('UA-91544606-1')
-        window.ga.trackView(localStorage.getItem('titlePage1','', true))
-        //window.ga.setAllowIDFACollection(true)
-        //window.ga.trackTiming('Category', IntervalInMilliseconds, 'Variable', 'Label')
+        window.ga.startTrackerWithId('UA-91544606-1');
+        window.ga.trackView(localStorage.getItem('titlePage1'), '', true);
+        window.ga.trackEvent('Status', 'Application Start');
+        window.ga.enableUncaughtExceptionReporting(Enable, success, error);
+        window.ga.setUserId(device.uuid);
 
     };
 
     function onPause() {
         // TODO: This application has been suspended. Save application state here.
-        window.ga.trackEvent('Status', 'Application Pause','', true);
+        window.ga.trackEvent('Status', 'Application Pause');
     };
 
     function onResume() {
         // TODO: This application has been reactivated. Restore application state here.
-        window.ga.trackEvent('Status', 'Application Resumed','', true);
+        window.ga.trackEvent('Status', 'Application Resumed');
     };
 } )();

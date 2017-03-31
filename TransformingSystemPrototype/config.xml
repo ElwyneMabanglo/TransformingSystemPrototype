@@ -95,4 +95,6 @@
     <splash height="1280" src="res/screens/wp8/SplashScreenImage.png" width="768" />
   </platform>
   <plugin name="cordova-plugin-firebase" spec="~0.1.19" />
+  <plugin name="cordova-plugin-google-analytics" version="1.7.5" />
+  <preference name="Orientation" value="portrait" />
 </widget>
