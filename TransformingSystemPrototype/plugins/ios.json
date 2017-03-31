@@ -12,6 +12,9 @@
         },
         "cordova-plugin-firebase": {
             "PACKAGE_NAME": "io.cordova.myapp950c00"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.prototype.app"
         }
     },
     "dependent_plugins": {}

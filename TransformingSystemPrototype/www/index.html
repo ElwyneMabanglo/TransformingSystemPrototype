@@ -43,7 +43,7 @@
 
     <!--External Panel - http://demos.jquerymobile.com/1.4.0/panel-external/--> 
     <script>
-        $(function () {       
+        $(function () {
             $("body>[data-role='panel']").panel().enhanceWithin();
         });
         //CSS Panel - http://stackoverflow.com/questions/20393239/jquery-mobile-external-panel-not-taking-on-styling
@@ -53,31 +53,31 @@
     </script>
 
     <style>
-    /* Remove flicking footer */
-    .ui-page .ui-footer-fixed.ui-fixed-hidden{
-                left: 0;
-                right: 0;
-                width: 100%;
-                position: fixed;
-                z-index: 1000;
-    }
+        /* Remove flicking footer */
+        .ui-page .ui-footer-fixed.ui-fixed-hidden {
+            left: 0;
+            right: 0;
+            width: 100%;
+            position: fixed;
+            z-index: 1000;
+        }
 
 
-    .ui-content {
-        padding: 1em !important;
-        padding-top: 1em !important;
-    }
+        .ui-content {
+            padding: 1em !important;
+            padding-top: 1em !important;
+        }
 
-    /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
-    .slick-slide {
-        outline: none;
-    }
+        /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
+        .slick-slide {
+            outline: none;
+        }
 
-    /*Remove overflow hidden - https://stackoverflow.com/questions/8718384/why-is-my-header-text-being-truncated */
-    .ui-header .ui-title {
-        margin-right: 10%;
-        margin-left: 10%;
-    }
+        /*Remove overflow hidden - https://stackoverflow.com/questions/8718384/why-is-my-header-text-being-truncated */
+        .ui-header .ui-title {
+            margin-right: 10%;
+            margin-left: 10%;
+        }
 
     </style>
 
@@ -189,7 +189,7 @@
         </div><!-- /footer -->
     </div><!-- /page two -->
 
-    <!-- Start of second page: #two -->
+    <!-- Start of second page: #three -->
     <div data-role="page" id="three" data-theme="a">
         <div data-role="header" data-position="fixed">
             <h1 id="titleMain3"></h1>
@@ -203,7 +203,7 @@
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
             &nbsp; &copy; Transforming Systems 2016.
         </div><!-- /footer -->
-    </div><!-- /page two -->
+    </div><!-- /page three -->
 
     <!--External Panel-->
     <div data-role="panel" id="left-panel" theme="a">
@@ -212,46 +212,64 @@
         <p><a href="#three" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide3"></a></p>
     </div><!-- /panel -->
 
-    <!--Firebase Database - https://firebase.google.com/docs/database/web/read-and-write -->
+    <!--Google analytics - Track page START-->
+    <script>
+         document.getElementById("titleSide1").addEventListener("touchstart", function () {
+             window.ga.trackView(localStorage.getItem('titlePage1','', true));
+         });
+
+         document.getElementById("titleSide2").addEventListener("touchstart", function () {
+             window.ga.trackView(localStorage.getItem('titlePage2','', true));
+         });
+
+         document.getElementById("titleSide3").addEventListener("touchstart", function () {
+             window.ga.trackView(localStorage.getItem('terms','', true));
+         });
+    </script>
+    <!--Google analytics - Track page END-->
+
+    <!--Firebase Database - https://firebase.google.com/docs/database/web/read-and-write START -->
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script>
+        // fire config
+        var config = {
+            apiKey: "AIzaSyAM3XZsPpodijhSBuPlb1veTSSJaPcJcxM",
+            authDomain: "push-dabf6.firebaseapp.com",
+            databaseURL: "https://push-dabf6.firebaseio.com",
+            storageBucket: "push-dabf6.appspot.com",
+            messagingSenderId: "140870032700"
+        };
 
-            var config = {
-                apiKey: "AIzaSyAM3XZsPpodijhSBuPlb1veTSSJaPcJcxM",
-                authDomain: "push-dabf6.firebaseapp.com",
-                databaseURL: "https://push-dabf6.firebaseio.com",
-                storageBucket: "push-dabf6.appspot.com",
-                messagingSenderId: "140870032700"
-            };
 
-            firebase.initializeApp(config);
-            var database = firebase.database();
+        firebase.initializeApp(config);
+        var database = firebase.database();
 
-            // get data from database    
-            database.ref().on("value", function (snap) {
+        // get data from database    
+        database.ref().on("value", function (snap) {
 
-                if (localStorage.getItem('titlePage1') != snap.val().page1) {
-                    localStorage.setItem('titlePage1', snap.val().page1);
-                    document.getElementById("titleMain1").innerHTML = document.getElementById("titleSide1").innerHTML = localStorage.getItem('titlePage1');              
-                }
+            if (localStorage.getItem('titlePage1') != snap.val().page1) {
+                localStorage.setItem('titlePage1', snap.val().page1);
+                document.getElementById("titleMain1").innerHTML = document.getElementById("titleSide1").innerHTML = localStorage.getItem('titlePage1');
+            }
 
-                if (localStorage.getItem('titlePage2') != snap.val().page2) {
-                    localStorage.setItem('titlePage2', snap.val().page2);
-                    document.getElementById("titleMain2").innerHTML = document.getElementById("titleSide2").innerHTML = localStorage.getItem('titlePage2');
-                }
+            if (localStorage.getItem('titlePage2') != snap.val().page2) {
+                localStorage.setItem('titlePage2', snap.val().page2);
+                document.getElementById("titleMain2").innerHTML = document.getElementById("titleSide2").innerHTML = localStorage.getItem('titlePage2');
+            }
 
-                if (localStorage.getItem('terms') != snap.val().page2) {
-                    localStorage.setItem('terms', snap.val().page2);
-                    document.getElementById("titleMain3").innerHTML = document.getElementById("titleSide3").innerHTML = localStorage.getItem('terms');
-                }
+            if (localStorage.getItem('terms') != snap.val().page3) {
+                localStorage.setItem('terms', snap.val().page3);
+                document.getElementById("titleMain3").innerHTML = document.getElementById("titleSide3").innerHTML = localStorage.getItem('terms');
+            }
 
-                if (localStorage.getItem('termsText') != snap.val().term) {
-                    localStorage.setItem('termsText', snap.val().term);
-                    document.getElementById("termsText").innerHTML = localStorage.getItem('termsText');
-                }
+            if (localStorage.getItem('termsText') != snap.val().term) {
+                localStorage.setItem('termsText', snap.val().term);
+                document.getElementById("termsText").innerHTML = localStorage.getItem('termsText');
+            }
 
-            });
+        });
     </script>
+    <!--Firebase Database END -->
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>

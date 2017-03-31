@@ -13,7 +13,6 @@
         document.addEventListener( 'resume', onResume.bind( this ), false );
         
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
-        //alert("TEST");
 
         if (!localStorage.getItem('titlePage1')) {
             localStorage.setItem('titlePage1', 'Page 1');
@@ -36,15 +35,21 @@
         document.getElementById("titleMain3").innerHTML = document.getElementById("titleSide3").innerHTML = localStorage.getItem('terms');
         document.getElementById("termsText").innerHTML = localStorage.getItem('termsText')
 
+        // google-analytics-plugin - https://github.com/danwilson/google-analytics-plugin
+        window.ga.startTrackerWithId('UA-91544606-1')
+        window.ga.trackView(localStorage.getItem('titlePage1','', true))
+        //window.ga.setAllowIDFACollection(true)
+        //window.ga.trackTiming('Category', IntervalInMilliseconds, 'Variable', 'Label')
+
     };
 
     function onPause() {
         // TODO: This application has been suspended. Save application state here.
-        //alert("TEST");
+        window.ga.trackEvent('Status', 'Application Pause','', true);
     };
 
     function onResume() {
         // TODO: This application has been reactivated. Restore application state here.
-        //alert("TEST");
+        window.ga.trackEvent('Status', 'Application Resumed','', true);
     };
 } )();

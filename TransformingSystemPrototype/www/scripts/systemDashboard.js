@@ -56,9 +56,9 @@ function dashboard(myId) {
 
         var cal_chartWidth = 0;
 
-        var _width = (window.devicePixelRatio * $(window).width()) * 0.95;
+        var _width = (window.devicePixelRatio * $(window).width()) * .90;
 
-        //var _width = window.devicePixelRatio;
+        //var _width = window.screen.width * window.devicePixelRatio;
         if (browser_width <= 1280) {
             cal_chartWidth = (_width * .45) - 10;
             $("#" + id).width((_width * .45) - 10);
