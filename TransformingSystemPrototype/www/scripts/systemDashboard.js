@@ -54,9 +54,15 @@ function dashboard(myId) {
 
         var cal_chartWidth = 0;
 
-        //var _width = (window.devicePixelRatio * $(window).width()) * 1.4; // Android test # RATIO 1.5 WDITH 320
-        //var _width = (window.devicePixelRatio * $(window).width()) * 1.01; // iOS test # RATIO 2 WDITH 320
-        var _width = (window.devicePixelRatio * $(window).width()) * .90; // Android oneplus 
+        var _width = 0;
+
+        if (window.devicePixelRatio == 2) {
+            var _width = (window.devicePixelRatio * $(window).width()) * 1.05;
+        } else if (window.devicePixelRatio == 1.5) {
+            var _width = (window.devicePixelRatio * $(window).width()) * 1.4
+        } else {
+            var _width = (window.devicePixelRatio * $(window).width()) * .90;
+        }
 
         //var _width = window.screen.width * window.devicePixelRatio;
         if (browser_width <= 1280) {
