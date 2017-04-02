@@ -6,8 +6,12 @@
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">-->
+    <!--/*Remve flicker page - http://rickluna.com/wp/2013/06/preventing-jquery-mobile-page-flicker/ START*/-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <!--/*Remve flicker page END*/-->
+
     <link href="css/index.css" rel="stylesheet" />
 
     <!--Transforming system sunburst graph START-->
@@ -21,7 +25,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
-    <!--https://kenwheeler.github.io/slick/ END-->
 
     <!--Initialize your slider in your script file or an inline script tag-->
     <script type="text/javascript">
@@ -35,10 +38,11 @@
             });
         });
     </script>
+    <!--https://kenwheeler.github.io/slick/ END-->
 
     <!--https://jquerymobile.com/ START-->
-    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
     <!--https://jquerymobile.com/ END-->
 
     <!--External Panel - http://demos.jquerymobile.com/1.4.0/panel-external/--> 
@@ -65,7 +69,7 @@
 
         .ui-content {
             padding: 1em !important;
-            padding-top: 1em !important;
+            padding-top: 2em !important;
         }
 
         /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
@@ -79,17 +83,47 @@
             margin-left: 10%;
         }
 
+        .ui-panel {
+            background: white;
+            width: 11em;
+        }
+
+        .ui-btn {
+            font-size: 11px;
+            margin: -0.5em 0;
+            padding: 1.2em 1em;
+            text-align: left;
+            white-space: normal;
+        }
+        
+        /*Remve flicker page - http://rickluna.com/wp/2013/06/preventing-jquery-mobile-page-flicker/ START*/
+        body {
+            /* Setting body margins to 0 to have proper positioning of #container div */
+            margin: 0;
+        }
+ 
+            /* #container div with absolute position and 100% width and height so it takes up whole window */
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ui-page {
+            -webkit-backface-visibility: hidden;
+        }
+
+        body {
+            overflow: hidden;
+        }
+        /*Remve flicker page END*/
+
     </style>
 
     <title>TransformingSystemPrototype</title>
 
 </head>
 <body id="deviceready">
-
-    <script>
-        alert("Ratio + Width:" + window.devicePixelRatio * $(window).width() + " Ratio:" + window.devicePixelRatio + " Wdith:" + $(window).width());
-    </script>
-
 
     <!-- Start of first page: #one -->
     <div data-role="page" id="one" data-theme="a">
@@ -137,6 +171,7 @@
                 </div>
             </div>
         </div><!-- /content -->
+             <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
             &nbsp; &copy; Transforming Systems 2016.
         </div><!-- /footer -->
@@ -188,6 +223,7 @@
                 </div>
             </div>
         </div><!-- /content -->
+
         <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
             &nbsp; &copy; Transforming Systems 2016.
@@ -211,10 +247,10 @@
     </div><!-- /page three -->
 
     <!--External Panel-->
-    <div data-role="panel" id="left-panel" theme="a">
-        <p><a href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b" id="titleSide1"></a></p>
-        <p><a href="#two" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide2"></a></p>
-        <p><a href="#three" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide3"></a></p>
+    <div data-role="panel" id="left-panel" theme="a" data-display="overlay">
+        <p><a href="#one" class="ui-btn ui-shadow ui-corner-all ui-btn-b" id="titleSide1"></a></p>
+        <p><a href="#two" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide2"></a></p>
+        <p><a href="#three" class="ui-btn ui-shadow ui-corner-all ui-btn-b"  id="titleSide3"></a></p>
     </div><!-- /panel -->
 
     <!--Google analytics - Track page START-->
