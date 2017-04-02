@@ -15,6 +15,9 @@
         },
         "cordova-plugin-google-analytics": {
             "PACKAGE_NAME": "com.prototype.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.prototype.app"
         }
     },
     "dependent_plugins": {}

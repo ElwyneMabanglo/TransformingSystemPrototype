@@ -615,75 +615,90 @@ function dashboard(myId) {
                             .style("opacity", 0);
                 })
                 .on("click", function (d) {
-                    var _idParentLabel = d.data.id;
-                    var index = currentShowingParentIds.indexOf(_idParentLabel);
-                    if (index > -1) {
-                        currentShowingParentIds.splice(index, 1);
-                        //remove all its childs
-                        _.each(d.data.childIds, function (i) {
-                            var _index = currentShowingChildIds.indexOf(i.id);
-                            if (_index > -1) {
-                                currentShowingChildIds.splice(_index, 1);
-                                $("#ind_info_" + i.id).remove();
-                                removePI(i.id);
-                                updateActionBar(i.id);
-                            }
-                        });
+                    
+                    //var content = "<table>"
+                    //for (i = 0; i < 3; i++) {
+                    //    content += '<tr><td>' + 'result ' + i + '</td></tr>';
+                    //}
+                    //content += "</table>"
 
-                        svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("notactive", true);
-                        svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("active", false);
-                        svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("active", false);
+                    //$('#results').append(content);
 
-                        //set corresponding inner labels to active
-                        svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("notactive", true);
-                        svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("active", false);
-                        svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("active", false);
-                        svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("active", false);
-                        svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("active", false);
-                        //grow pie
-                        svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).transition().duration(200)
-                                .attr('d', function (d) {
-                                    return _arcNormal(d);
-                                })
-                                .style("opacity", 0);
-                    } else {
-                        currentShowingParentIds.push(_idParentLabel);
-                        $('#results_container').css('visibility', 'visible');
-                        _.each(d.data.childIds, function (i) {
-                            var _index = currentShowingChildIds.indexOf(i.id);
-                            if (_index > -1) {
-                                currentShowingChildIds.splice(_index, 1);
-                                $("#ind_info_" + i.id).remove();
-                            }
-                            currentShowingChildIds.push(i.id);
-                            loadPI(i.id);
-                        });
+                    //var obj = JSON.parse("data.json");
+                    //alert(JSON.stringify(obj, null, 4));
 
-                        svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("notactive", false);
-                        svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("active", true);
-                        svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("active", true);
 
-                        //set corresponding inner labels to active
-                        svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("notactive", false);
-                        svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("active", true);
-                        svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("active", true);
-                        svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("active", true);
-                        svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("active", true);
-                        //grow pie
-                        svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).transition().duration(200)
-                                .attr('d', function (d) {
-                                    return _arcGrow(d);
-                                })
-                                .style("opacity", 0.3);
-                    }
+
+
+                    //var _idParentLabel = d.data.id;
+                    //var index = currentShowingParentIds.indexOf(_idParentLabel);
+                    //if (index > -1) {
+                    //    currentShowingParentIds.splice(index, 1);
+                    //    //remove all its childs
+                    //    _.each(d.data.childIds, function (i) {
+                    //        var _index = currentShowingChildIds.indexOf(i.id);
+                    //        if (_index > -1) {
+                    //            currentShowingChildIds.splice(_index, 1);
+                    //            $("#ind_info_" + i.id).remove();
+                    //            removePI(i.id);
+                    //            updateActionBar(i.id);
+                    //        }
+                    //    });
+
+                    //    svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("active", false);
+                    //    svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("active", false);
+
+                    //    //set corresponding inner labels to active
+                    //    svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("active", false);
+                    //    svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("active", false);
+                    //    svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("active", false);
+                    //    svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("active", false);
+                    //    //grow pie
+                    //    svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).transition().duration(200)
+                    //            .attr('d', function (d) {
+                    //                return _arcNormal(d);
+                    //            })
+                    //            .style("opacity", 0);
+                    //} else {
+                    //    currentShowingParentIds.push(_idParentLabel);
+                    //    $('#results_container').css('visibility', 'visible');
+                    //    _.each(d.data.childIds, function (i) {
+                    //        var _index = currentShowingChildIds.indexOf(i.id);
+                    //        if (_index > -1) {
+                    //            currentShowingChildIds.splice(_index, 1);
+                    //            $("#ind_info_" + i.id).remove();
+                    //        }
+                    //        currentShowingChildIds.push(i.id);
+                    //        loadPI(i.id);
+                    //    });
+
+                    //    svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.outerArcsTextPath").selectAll("text.label_parent_" + d.data.id).classed("active", true);
+                    //    svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.outerArcs").select("path.parent_section_" + d.data.id).classed("active", true);
+
+                    //    //set corresponding inner labels to active
+                    //    svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.inner_labels").selectAll("text.label_parent_" + d.data.id).classed("active", true);
+                    //    svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.innerArcs").selectAll("path.parent_section_" + d.data.id).classed("active", true);
+                    //    svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.data").selectAll("path.parent_section_" + d.data.id).classed("active", true);
+                    //    svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).classed("active", true);
+                    //    //grow pie
+                    //    svg.select("g.data_highlight").selectAll("path.parent_section_" + d.data.id).transition().duration(200)
+                    //            .attr('d', function (d) {
+                    //                return _arcGrow(d);
+                    //            })
+                    //            .style("opacity", 0.3);
+                    //}
                 });
     }
 

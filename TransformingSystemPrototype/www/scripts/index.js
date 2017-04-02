@@ -39,7 +39,7 @@
         window.ga.startTrackerWithId('UA-91544606-1');
         window.ga.trackView(localStorage.getItem('titlePage1'), '', true);
         window.ga.trackEvent('Status', 'Application Start');
-        window.ga.enableUncaughtExceptionReporting(Enable, success, error);
+        //window.ga.enableUncaughtExceptionReporting(Enable, success, error);
         window.ga.setUserId(device.uuid);
 
     };

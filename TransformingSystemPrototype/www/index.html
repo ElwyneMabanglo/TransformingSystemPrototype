@@ -14,6 +14,9 @@
 
     <link href="css/index.css" rel="stylesheet" />
 
+    <script type="text/javascript" src="scripts/underscore-min.js"></script>
+
+
     <!--Transforming system sunburst graph START-->
     <script src="scripts/d3.min.js"></script>
     <script src="scripts/systemDashboard.js"></script>
@@ -21,10 +24,10 @@
     <!--Transforming system sunburst graph END-->
 
     <!--https://kenwheeler.github.io/slick/ START-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
 
     <!--Initialize your slider in your script file or an inline script tag-->
     <script type="text/javascript">
@@ -65,14 +68,13 @@
             position: fixed;
             z-index: 1000;
         }
-
-
+        
         .ui-content {
             padding: 1em !important;
-            padding-top: 2em !important;
+            padding-top: 1em !important;
         }
 
-        /*Remvove highlight - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
+        /*Remvove highlight from slick.js - https://stackoverflow.com/questions/32468430/slick-js-remove-blue-highlight-around-image */
         .slick-slide {
             outline: none;
         }
@@ -83,11 +85,13 @@
             margin-left: 10%;
         }
 
+        /*CSS for Panel*/
         .ui-panel {
             background: white;
             width: 11em;
         }
 
+        /*CSS for Panel buttons*/
         .ui-btn {
             font-size: 11px;
             margin: -0.5em 0;
@@ -170,6 +174,7 @@
                     </script>
                 </div>
             </div>
+            <div id="results"></div>
         </div><!-- /content -->
              <!--Remove flicker in footer - http://stackoverflow.com/questions/14125271/jquery-mobile-persistent-navbar-flickers-->
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-id="myfooter" data-theme="a">
@@ -257,17 +262,17 @@
     <script>
          document.getElementById("titleSide1").addEventListener("touchstart", function () {
              window.ga.trackView(localStorage.getItem('titlePage1'), '', true);
-             window.ga.trackEvent('Status', 'Panel Touch');
+             window.ga.trackEvent('Status', 'Panel Touch ' + localStorage.getItem('titlePage1'));
          });
 
          document.getElementById("titleSide2").addEventListener("touchstart", function () {
              window.ga.trackView(localStorage.getItem('titlePage2'), '', true);
-             window.ga.trackEvent('Status', 'Panel Touch');
+             window.ga.trackEvent('Status', 'Panel Touch ' + localStorage.getItem('titlePage2'));
          });
 
          document.getElementById("titleSide3").addEventListener("touchstart", function () {
              window.ga.trackView(localStorage.getItem('terms'), '', true);
-             window.ga.trackEvent('Status', 'Panel Touch');
+             window.ga.trackEvent('Status', 'Panel Touch ' + localStorage.getItem('terms'));
          });
     </script>
     <!--Google analytics - Track page END-->
