@@ -615,20 +615,37 @@ function dashboard(myId) {
                             .style("opacity", 0);
                 })
                 .on("click", function (d) {
+                    $.getJSON("data.json", (j) => {
+
+                        var content = "<table data-role='table' class='ui-responsive ui-shadow'>";
+                        content += "<tr><th>Name</th><th>Description</th><th>Site</th></tr>";
+
+                        j.forEach((o) => {
+                            if (o.name == d.data.title) {
+                                content += "<tr>";
+                                content += "<td>" + o.name + "</td>";
+                                content += "<td>" + o.description + "</td>";
+                                content += "<td>" + o.siteName + "</td>";
+                                content += "</tr>";
+                            }
+                            // assuming your onclick has a property called data.title
+                            // it'll work
+                            // yea it does, tested it earlier with alert(d.data.title)
+                        });
+
+                        content += "</table>"
+                        
+                        $('#results').html(content);
+                    });
+
+                    d.preventDefault();
+                    // there you go
+                    // Thanks :D
+                    // too tired
+                    // OW?
                     
-                    //var content = "<table>"
-                    //for (i = 0; i < 3; i++) {
-                    //    content += '<tr><td>' + 'result ' + i + '</td></tr>';
-                    //}
-                    //content += "</table>"
 
-                    //$('#results').append(content);
-
-                    //var obj = JSON.parse("data.json");
-                    //alert(JSON.stringify(obj, null, 4));
-
-
-
+                    // i want o apend table to div with the json data
 
                     //var _idParentLabel = d.data.id;
                     //var index = currentShowingParentIds.indexOf(_idParentLabel);
