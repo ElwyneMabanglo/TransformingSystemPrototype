@@ -534,34 +534,70 @@ function dashboard(myId) {
                     svg.select("g.inner_labels").selectAll("text.svglabel").style("opacity", 1);
                 })
                 .on("click", function (d) {
-                    var _idLabel = d.data.idLabel;
-                    var index = currentShowingChildIds.indexOf(_idLabel);
-                    if (index > -1) {
-                        currentShowingChildIds.splice(index, 1);
-                        //$("#ind_info_"+_idLabel).remove();
-                        removePI(_idLabel);
-                        updateActionBar(_idLabel);
-                        svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("notactive", true);
-                        svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("active", false);
-                        svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("active", false);
-                        svg.select("g.data").select("path.child_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.data").select("path.child_section_" + d.data.id).classed("active", false);
-                        svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("notactive", true);
-                        svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("active", false);
-                    } else {
-                        svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("notactive", false);
-                        svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("active", true);
-                        svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("active", true);
-                        svg.select("g.data").select("path.child_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.data").select("path.child_section_" + d.data.id).classed("active", true);
-                        svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("notactive", false);
-                        svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("active", true);
-                        currentShowingChildIds.push(_idLabel);
-                        $('#results_container').css('visibility', 'visible');
-                        loadPI(d.data.idLabel);
-                    }
+
+
+                    //Load JSON - https://api.jquery.com/jquery.getjson/
+                    var jqxhr = $.getJSON("data.json", function () {
+                        console.log("success");
+                    })
+
+                    .done(function (j) {
+                        console.log("second success");
+
+                        var content = "<table data-role='table' class='ui-responsive ui-shadow'>";
+                        content += "<tr><th>Name</th><th>Description</th><th>Alert Level</th></tr>";
+
+                        let i;
+                        for (i = 0; i < j.length; i++) {
+                            let o = j[i];
+                            if (o.childUnitList[0].id == d.data.idLabel) {
+                                content += "<tr>";
+                                content += "<td>" + o.childUnitList[0].name + "</td>";
+                                content += "<td>" + o.childUnitList[0].siteName + "</td>";
+                                content += "<td>" + o.childUnitList[0].alertLevel + "</td>";
+                                content += "</tr>";
+                            }
+                        }
+
+                        content += "</table>"
+                        $('#results').html(content);
+                    })
+
+                     .fail(function () {
+                         console.log("error");
+                     })
+
+
+
+
+                    //var _idLabel = d.data.idLabel;
+                    //var index = currentShowingChildIds.indexOf(_idLabel);
+                    //if (index > -1) {
+                    //    currentShowingChildIds.splice(index, 1);
+                    //    //$("#ind_info_"+_idLabel).remove();
+                    //    removePI(_idLabel);
+                    //    updateActionBar(_idLabel);
+                    //    svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("active", false);
+                    //    svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("active", false);
+                    //    svg.select("g.data").select("path.child_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.data").select("path.child_section_" + d.data.id).classed("active", false);
+                    //    svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("notactive", true);
+                    //    svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("active", false);
+                    //} else {
+                    //    svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.inner_labels").selectAll("text.label_unit_" + d.data.id).classed("active", true);
+                    //    svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.innerArcs").select("path.unit_section_" + d.data.id).classed("active", true);
+                    //    svg.select("g.data").select("path.child_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.data").select("path.child_section_" + d.data.id).classed("active", true);
+                    //    svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("notactive", false);
+                    //    svg.select("g.data_highlight").select("path.child_section_" + d.data.id).classed("active", true);
+                    //    currentShowingChildIds.push(_idLabel);
+                    //    $('#results_container').css('visibility', 'visible');
+                    //    loadPI(d.data.idLabel);
+                    //}
                 });
     }
 
